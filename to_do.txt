@@ -1,0 +1,7 @@
+# To do on Weather Dashboard
+
+## make line graph pretty
+## add if error dont print
+### house all functions under one if instead of separate if statements on each
+
+## make code more representative of good coding practices
