@@ -2,7 +2,6 @@ rm(list=ls())
 library(darksky) # powered by dark sky
 library(data.table)
 library(ggplot2)
-library(grid)
 library(gridExtra)
 library(magrittr)
 library(lubridate)
@@ -11,7 +10,7 @@ library(shiny)
 library(zipcode)
 
 source("R/weather_functions.R")
-source("C:/Users/austi_000/Desktop/set-darksky-api.R") # need key from darksky.com to work
+source("C:/Users/set-darksky-api.R") # need key from darksky.com to work
 
 data(zipcode)
 setDT(zipcode)

@@ -1,6 +1,5 @@
 library(data.table)
 library(ggplot2)
-library(grid)
 library(gridExtra)
 library(magrittr)
 library(lubridate)
