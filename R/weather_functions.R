@@ -31,7 +31,6 @@ windspeed_graph <- function(hourly_data){
   return(g)         
 }
 
-#windspeed_graph(weather$hourly)
 
 
 # Wind bearing Plot ---------------------------------------------------------
@@ -44,14 +43,10 @@ windbearing_graph <- function(hourly_data, select_time) {
   # get direction of wind
   wind_from_the <- lookup[which(abs(lookup$bearing - hourly_data[time == select_time]$windBearing)  == min(abs(lookup$bearing - hourly_data[time == select_time]$windBearing)))]$direction
   # get descriptor of wind
-  # wind_speed_description <- paste0('The windspeed is ',
-  #                                  round(hourly_data[time == select_time]$windSpeed),
-  #                                  ' mph from the ',
-  #                                  wind_from_the)
   wind_speed_description <- paste0('At ', format(select_time, "%l %p"), " on ", wday(select_time, label = TRUE),
-                                   ' the windspeed will be ', 
+                                   ' the windspeed will be\n', 
                                    round(hourly_data[time == select_time]$windSpeed),
-                                   ' mph  from the ', 
+                                   ' mph from the ', 
                                    wind_from_the)
   
   #make plot
@@ -88,7 +83,6 @@ weekly_graph <-  function(zip_daily_weather){
   
   zip_daily_weather$day_labels <- zip_daily_weather$time[2:8] %>% 
     weekdays %>% 
-    #substr(1,3) %>% 
     c('Today', .)
   zip_daily_weather[, day_labels:=factor(day_labels, levels= day_labels)]
   
@@ -107,7 +101,6 @@ weekly_graph <-  function(zip_daily_weather){
                   y = temperatureMax, 
                   label = paste0(round(temperatureMax,0), '*')),  # these broke suddenly°'
               parse = FALSE, hjust = .5, vjust = -.6) + 
-    # annotation_custom(img2, xmin=1.5, xmax=2.5, ymin=55, ymax=60) +
     scale_y_continuous(limits = c(min_temp, max_temp)) +
     ggtitle('Highs and Lows of the Week Ahead') +
     ylab('Temperature') +

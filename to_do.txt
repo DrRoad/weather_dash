@@ -1,7 +1,19 @@
 # To do on Weather Dashboard
 
 ## make line graph pretty
+### Fix x axix labels and x & y axis titles 
+### add red line for where clicked
+### add some kind of box that says click here
+### need to line up plot background so it matches the plot background from the temperature and precipitation plot above it. There will need to be some sort of manipulation around the legend. 
+
+## add something to right of windspeed graph
+### details of coming day? ozone humidity et cetera of click?
+### needs to be in a nicely formated table
+
 ## add if error dont print
 ### house all functions under one if instead of separate if statements on each
 
-## make code more representative of good coding practices
+## am I happy with how code is?
+
+## add 'powered by darksky' somewhere
+### right side of input panel?
