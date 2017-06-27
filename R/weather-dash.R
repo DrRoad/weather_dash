@@ -10,9 +10,8 @@ library(scales)
 library(shiny)
 library(zipcode)
 
-source("C:/Users/acauthon/Documents/R-Scripts/shinyapps/weather/weather_functions.R")
-
-Sys.setenv(DARKSKY_API_KEY='ac81ad1ae0c043334b1b044a157083d0')
+source("R/weather_functions.R")
+source("C:/Users/austi_000/Desktop/set-darksky-api.R") # need key from darksky.com to work
 
 data(zipcode)
 setDT(zipcode)
