@@ -1,7 +1,8 @@
 # Weather Dash
 
 #### I am building a weather dashboad using R with an emphasis on the Shiny and GGplot2 packages.
-It requires an api key from https://darksky.net
+
+A working copy of the dashboard can be found at: https://austincauthon.shinyapps.io/weather_dash/
 
 My next steps include:
   1. Making the line graph for wind speed more visually pleasing.
