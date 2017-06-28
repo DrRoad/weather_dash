@@ -10,7 +10,7 @@ library(shiny)
 library(zipcode)
 
 source("R/weather_functions.R")
-source("C:/Users/set-darksky-api.R") # need key from darksky.com to work
+source("C:/Users/set-darksky-api.R") # need key from darksky.net to work
 
 data(zipcode)
 setDT(zipcode)
