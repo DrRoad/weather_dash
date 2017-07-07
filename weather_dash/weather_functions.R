@@ -15,11 +15,52 @@ library(scales)
 
 
 
+# Make function to fix hourly x axis --------------------------------------
+x_axis_hourly <- function(hourly_data, y_axis){
+  min_y_value <- min(hourly_data[, get(y_axis)])
+  
+  first_day_begin <- hourly_data[1,]$time
+  first_day_end <- max(hourly_data[day(time) == day(hourly_data[1,]$time)]$time)
+  first_day_mid <- first_day_begin + floor((first_day_end-first_day_begin)/2) 
+  
+  second_day_begin <- min(hourly_data[day(time) == day(hourly_data[1,]$time) + 1]$time)
+  second_day_end <- max(hourly_data[day(time) == day(hourly_data[1,]$time) + 1]$time)
+  second_day_mid <- second_day_begin + floor((second_day_end-second_day_begin)/2) 
+  
+  third_day_end <- max(hourly_data[day(time) == day(hourly_data[1,]$time) + 2]$time)
+  third_day_begin <- min(hourly_data[day(time) == day(hourly_data[1,]$time) + 2]$time)
+  third_day_mid <- third_day_begin + floor((third_day_end-third_day_begin)/2) 
+
+  #print(wday(first_day_mid, label = TRUE))
+  # scale_x_datetime(date_labels = "%l %p", 
+  #                  breaks = hourly_data$time,
+  #                  expand = c(0,0)) +
+  # annotate(geom= 'text',
+  #          label = wday(c(first_day_mid, second_day_mid, third_day_mid), label = TRUE),
+  #          fontface =2,
+  #          x = c(first_day_mid, second_day_mid, third_day_mid),
+  #          y = .93 * min_y_val + .90) +
+  annotate(geom = 'text',
+           label = 'hello',
+           x = hourly_data[5]$time, 
+           y = 7) 
+  # annotate(geom='segment',
+  #            x =c(first_day_begin, second_day_begin, third_day_begin),
+  #            xend = c(first_day_end, second_day_end, third_day_end),
+  #            y = .93*min_y_value,
+  #            yend = .93*min_y_value) 
+}
+
 
 # Windspeed Graph ---------------------------------------------------------
 windspeed_graph <- function(hourly_data){
+  if(!is.data.table(hourly_data)){setDT(hourly_data)}
   g <- ggplot(data = hourly_data, aes(x = time, y = windSpeed)) + 
     geom_line() +
+    ylab("Wind Speed (MPH)") +
+    scale_x_datetime(date_labels = "%l %p",
+                     breaks = hourly_data$time,
+                     expand = c(0,0)) +
     theme(axis.text.x = element_text(angle = 75, hjust = 1),
           axis.title.x = element_blank(), 
           panel.background = element_blank(),
@@ -27,11 +68,15 @@ windspeed_graph <- function(hourly_data){
           panel.grid.major.x = element_blank(),
           legend.title = element_text(hjust = .5),
           legend.title.align = .5,
-          plot.title = element_text(hjust = .5, size = 22))
+          plot.title = element_text(hjust = .5, size = 22)) +
+    x_axis_hourly(hourly_data, 'windSpeed') 
   return(g)         
 }
 
-
+#temp code for testing
+forecast <- get_current_forecast(38.9, -94.7)
+windspeed_graph(forecast$hourly) 
+# /temp code
 
 # Wind bearing Plot ---------------------------------------------------------
 windbearing_graph <- function(hourly_data, select_time) {
